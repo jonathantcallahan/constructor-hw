@@ -10,17 +10,18 @@ function Letter(letter){
     }
     this.letterChecker = (guess) => {
         if(guess === this.chosenLetter){
-            this.beenGuessed = false;
-        } else {
             this.beenGuessed = true;
+        } else {
+            this.beenGuessed = false;
         }
     }
 }   
 
 
-var a = new Letter(a);
+var a = new Letter('a');
 
 a.letterChecker('b')
 console.log(a.returnLetter())
 a.letterChecker('a')
 console.log(a.returnLetter())
+console.log(a)
