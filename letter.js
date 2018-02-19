@@ -20,8 +20,7 @@ function Letter(letter){
 
 var a = new Letter('a');
 
-a.letterChecker('b')
-console.log(a.returnLetter())
-a.letterChecker('a')
-console.log(a.returnLetter())
-console.log(a)
+module.exports = {
+    Letter: Letter,
+}
+
