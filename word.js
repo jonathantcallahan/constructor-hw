@@ -12,15 +12,28 @@ function Word(word){
         } 
         return this.wordHolder;
     }
+    this.printString = () => {
+        for(var i = 0; i<this.wordHolder.length; i++){
+            //return letter checks to see if a letter has
+            //been guessed or not. If the letter has been
+            //guessed it return the value of the letter,
+            //if it has not it returns an underscore. Am 
+            //having trouble getting the underscore to 
+            //display
+            console.log(this.wordHolder[i].returnLetter())
+        }
+    }
 }
 
 var ballsArray = ['b','a','l','l','s']
 
 var balls = new Word(ballsArray)
 
-console.log(b)
+// console.log(b)
 
-console.log(balls)
+// console.log(balls)
 
-console.log(balls.createArray())
+balls.createArray()
+
+balls.printString()
 

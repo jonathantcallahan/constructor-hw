@@ -17,9 +17,6 @@ function Letter(letter){
     }
 }   
 
-
-var a = new Letter('a');
-
 module.exports = {
     Letter: Letter,
 }
