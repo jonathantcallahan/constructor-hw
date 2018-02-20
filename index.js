@@ -15,9 +15,8 @@ let hiddenWord;
 
 var consoleHangman = {
     resetGame: () => {
-        this.setWord();
-        this.remGuesses = 15;
-        
+        consoleHangman.setWord();
+        consoleHangman.remGuesses = 15;
     },
     remGuesses: 15,
     //datWord: '',
@@ -29,7 +28,8 @@ var consoleHangman = {
         console.log(datWord)
         consoleHangman.createWord(datWord)
     },
-    userGuess: () => {
+    startGame: () => {
+        consoleHangman.resetGame();
         inquirer.prompt([
             {
                 type: 'confirm',
@@ -41,15 +41,31 @@ var consoleHangman = {
                 return;
             }
             consoleHangman.setWord()
+            consoleHangman.userGuess()
+        }).catch(function(error){
+            console.log(error)
+        })
+    },
+    userGuess: () => {
+        inquirer.prompt([
+            {
+                name: 'guess',
+                message: 'please guess a letter'
+            }
+        ]).then(function(response){
+            hiddenWord.wordChecker(response.guess)
+            hiddenWord.printString()
+            consoleHangman.userGuess()
         }).catch(function(error){
             console.log(error)
         })
     },
     createWord: (word) => {
         hiddenWord = new Word(datWord)
+        hiddenWord.createArray()
     }
 }
 
 
-consoleHangman.userGuess()
+consoleHangman.startGame()
 
