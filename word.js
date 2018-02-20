@@ -1,7 +1,5 @@
 const letter = require('./letter')
 
-var b = new letter.Letter('b')
-
 function Word(word){
     this.word = word;
     this.wordHolder = [];
@@ -35,23 +33,5 @@ function Word(word){
     }
 }
 
-var ballsArray = ['b','a','l','l','s']
-
-var balls = new Word(ballsArray)
-
-// console.log(b)
-
-// console.log(balls)
-
-balls.createArray()
-
-balls.printString()
-
-balls.wordChecker('b')
-
-balls.printString()
-
-balls.wordChecker('a')
-
-balls.printString();
+module.exports = Word
 

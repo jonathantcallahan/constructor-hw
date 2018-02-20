@@ -1,4 +1,4 @@
-var word = require('./word')
+var Word = require('./word')
 var inquirer = require('inquirer')
 
 var wordLibrary = [
@@ -25,10 +25,9 @@ var consoleHangman = {
     //outside of the object
     setWord: () => {
         let randNum = Math.floor(Math.random() * wordLibrary.length)
-        console.log(randNum);
         datWord = wordLibrary[randNum]
         console.log(datWord)
-        consoleHangman.setWord(datWord)
+        consoleHangman.createWord(datWord)
     },
     userGuess: () => {
         inquirer.prompt([
@@ -36,20 +35,21 @@ var consoleHangman = {
                 type: 'confirm',
                 name: 'play',
                 message: 'Would you like to play hangman?'
-            }.then(function(response){
-                if(!response.play){
-                    return;
-                }
-                consoleHangman.setWord()
-            })
-        ])
+            }
+        ]).then(function(response){
+            if(!response.play){
+                return;
+            }
+            consoleHangman.setWord()
+        }).catch(function(error){
+            console.log(error)
+        })
     },
-    createWord: () => {
-        hiddenWord = new word.Word(datWord)
+    createWord: (word) => {
+        hiddenWord = new Word(datWord)
     }
 }
 
-consoleHangman.setWord()
 
-console.log(`outer reference ${datWord}`)
+consoleHangman.userGuess()
 
