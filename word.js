@@ -38,7 +38,7 @@ function Word(word){
             //the las letter in the string
         }
         if(!correctGuess){
-            console.log('Incorrect Guess!')
+            console.log('\nIncorrect Guess!')
         }
 
         

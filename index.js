@@ -32,7 +32,7 @@ var consoleHangman = {
             {
                 type: 'confirm',
                 name: 'play',
-                message: '---------------------\n\nWould you like to play hangman?\n\n---------------------------\n'
+                message: '\n---------------------------\n\nWould you like to play hangman?\n\n---------------------------\n'
             }
         ]).then(function(response){
             if(!response.play){
@@ -47,12 +47,12 @@ var consoleHangman = {
     userGuess: () => {
         if(currentWord && currentWord.indexOf('_')<0){
             currentWord = '_';
-            console.log('You win!')
+            console.log('\nYou win!')
             consoleHangman.startGame()
             return;
         }
         if(consoleHangman.remGuesses<1){
-            console.log('You lose! sorry')
+            console.log('\nYou lose! sorry')
             currentWord = '_';
             consoleHangman.startGame()
             return
@@ -60,15 +60,16 @@ var consoleHangman = {
         inquirer.prompt([
             {
                 name: 'guess',
-                message: '\n\nplease guess a letter'
+                message: '\n\nPlease Guess a Letter'
             }
         ]).then(function(response){
             hiddenWord.wordChecker(response.guess)
+            console.log(`\nYou have ${consoleHangman.remGuesses} remaining guesses\n`)
             //hiddenWord.printString()
             currentWord = hiddenWord.printString()
             consoleHangman.userGuess()
             consoleHangman.remGuesses--
-            console.log(`\nYou have ${consoleHangman.remGuesses} remaining\n`)
+            // console.log(`\nYou have ${consoleHangman.remGuesses} remaining\n`)
         }).catch(function(error){
             console.log(error)
         })
