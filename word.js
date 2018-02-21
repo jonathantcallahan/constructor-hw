@@ -7,7 +7,7 @@ function Word(word){
     this.createArray = () => {
         for(var i = 0; i<this.word.length; i++){
             this.wordHolder.push(new letter.Letter(this.word[i]))
-            console.log(this.word[i])
+            //console.log(this.word[i])
         } 
         return this.wordHolder;
     }
@@ -24,11 +24,23 @@ function Word(word){
             this.stringHolder.push(this.wordHolder[i].returnLetter())
         }
         console.log(this.stringHolder.toString().replace(/,/g,''))
+        return this.stringHolder.toString().replace(/,/g,'')
     }
     this.wordChecker = (letter) => {
+        var correctGuess = false;
         for(var i = 0; i<this.wordHolder.length; i++){
             this.wordHolder[i].letterChecker(letter)
+            if(this.wordHolder[i].letterChecker(letter)){
+                correctGuess = true;
+            }
+            //var correctGuess = this.wordHolder[i].letterChecker(letter)
+            //was setting incorrect guess if the letter wasn't
+            //the las letter in the string
         }
+        if(!correctGuess){
+            console.log('Incorrect Guess!')
+        }
+
         
     }
 }

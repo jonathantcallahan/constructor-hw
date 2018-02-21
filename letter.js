@@ -11,7 +11,10 @@ function Letter(letter){
     this.letterChecker = (guess) => {
         if(guess === this.chosenLetter){
             this.beenGuessed = true;
-        } // else {
+            return true;
+        } else {
+            return false;
+        }// else {
         //     this.beenGuessed = false;
         // }
         //the letter checker method was setting already

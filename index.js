@@ -10,8 +10,7 @@ var wordLibrary = [
 
 let datWord;
 let hiddenWord;
-
-
+let currentWord;
 
 var consoleHangman = {
     resetGame: () => {
@@ -25,7 +24,6 @@ var consoleHangman = {
     setWord: () => {
         let randNum = Math.floor(Math.random() * wordLibrary.length)
         datWord = wordLibrary[randNum]
-        console.log(datWord)
         consoleHangman.createWord(datWord)
     },
     startGame: () => {
@@ -47,6 +45,10 @@ var consoleHangman = {
         })
     },
     userGuess: () => {
+        if(currentWord && currentWord.indexOf('_')<0){
+            console.log('You win!')
+            consoleHangman.startGame()
+        }
         inquirer.prompt([
             {
                 name: 'guess',
@@ -55,6 +57,7 @@ var consoleHangman = {
         ]).then(function(response){
             hiddenWord.wordChecker(response.guess)
             hiddenWord.printString()
+            //currentWord = hiddenWord.printString()
             consoleHangman.userGuess()
         }).catch(function(error){
             console.log(error)
