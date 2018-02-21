@@ -46,8 +46,10 @@ var consoleHangman = {
     },
     userGuess: () => {
         if(currentWord && currentWord.indexOf('_')<0){
+            currentWord = '_';
             console.log('You win!')
             consoleHangman.startGame()
+            return;
         }
         inquirer.prompt([
             {
@@ -56,8 +58,8 @@ var consoleHangman = {
             }
         ]).then(function(response){
             hiddenWord.wordChecker(response.guess)
-            hiddenWord.printString()
-            //currentWord = hiddenWord.printString()
+            //hiddenWord.printString()
+            currentWord = hiddenWord.printString()
             consoleHangman.userGuess()
         }).catch(function(error){
             console.log(error)
